@@ -1,0 +1,52 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [ "hatchling>=1.27" ]
+
+[project]
+name = "hatch-npm-vendor"
+version = "0.1.0"
+description = "Hatch build hook to vendor npm packages into Python wheels."
+readme = "README.md"
+keywords = [ "build", "hatch", "hatchling", "npm", "vendor", "wheel" ]
+license = "MIT"
+authors = [ { name = "sudosubin", email = "sudosubin@gmail.com" } ]
+requires-python = ">=3.8"
+classifiers = [
+  "Framework :: Hatch",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Topic :: Software Development :: Build Tools",
+]
+dependencies = [ "hatchling>=1.27" ]
+urls.Changelog = "https://github.com/sudosubin/hatch-npm-vendor/blob/main/CHANGELOG.md"
+urls.Repository = "https://github.com/sudosubin/hatch-npm-vendor"
+entry-points.hatch.npm-vendor = "hatch_npm_vendor.hooks"
+
+[dependency-groups]
+dev = [
+  "commitizen>=4.19,<5; python_version>='3.10'",
+  "hatchling>=1.27",
+  "pytest>=8",
+]
+
+[tool.hatch]
+build.targets.wheel.packages = [ "src/hatch_npm_vendor" ]
+build.targets.sdist.include = [ "/src", "/tests", "/CHANGELOG.md" ]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 80
+lint.extend-select = [ "B", "I", "UP" ]
+
+[tool.ty]
+src.include = [ "src" ]
+
+[tool.pytest]
+ini_options.testpaths = [ "tests" ]
