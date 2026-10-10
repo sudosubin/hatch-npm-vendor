@@ -58,7 +58,8 @@ jobs:
   publish:
     name: Publish
     needs: build
-    runs-on: ubuntu-24.04-arm
+    # pypa/gh-action-pypi-publish is an amd64-only docker action.
+    runs-on: ubuntu-24.04
     permissions:
       id-token: write
 
